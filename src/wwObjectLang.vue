@@ -29,17 +29,6 @@ export default {
     },
     data() {
         return {
-            currentLang: wwLib.wwLang.lang,
-            languages: {
-                en: {
-                    en: 'en',
-                    fr: 'en'
-                },
-                fr: {
-                    en: 'fr',
-                    fr: 'fr'
-                }
-            }
         }
     },
     computed: {
@@ -51,6 +40,9 @@ export default {
         },
         mainColor() {
             return this.wwObject.content.data.mainColor || '#2c2c2c'
+        },
+        currentLang() {
+            return wwLib.$store.getters["front/getLang"]
         },
         availableLangs() {
             return wwLib.$store.getters["websiteData/getPage"].langs
@@ -64,11 +56,15 @@ export default {
         },
         setLang(lang) {
             wwLib.wwLang.setLang(lang)
-            this.currentLang = lang
         },
         displayLang(lang) {
-            return this.languages[lang][lang]
+            for (const l of wwLib.wwLang.availableLangs) {
+                if (l.value.toLowerCase() == lang.toLowerCase()) {
+                    return l.value.toUpperCase();
+                }
+            }
         },
+        /* wwManager:start */
         async edit() {
             console.log('erogheoprihg')
             wwLib.wwObjectHover.setLock(this);
@@ -143,17 +139,10 @@ export default {
             }
             wwLib.wwObjectHover.removeLock();
         }
+        /* wwManager:end */
     },
     mounted() {
         this.init();
-
-        wwLib.wwElementsStyle.applyAllStyles({
-            wwObject: this.wwObject,
-            lastWwObject: null,
-            element: this.$el,
-            noAnim: this.wwAttrs.wwNoAnim,
-            noClass: false,
-        });
 
         this.$emit('ww-loaded', this);
 
