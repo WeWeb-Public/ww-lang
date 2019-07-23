@@ -30,7 +30,6 @@ export default {
     data() {
         return {
             currentLang: wwLib.wwLang.lang,
-            availableLangs: wwLib.wwLang.availableLangs,
             languages: {
                 en: {
                     en: 'en',
@@ -52,6 +51,9 @@ export default {
         },
         mainColor() {
             return this.wwObject.content.data.mainColor || '#2c2c2c'
+        },
+        availableLangs() {
+            return wwLib.$store.getters["websiteData/getPage"].langs
         }
     },
     watch: {
