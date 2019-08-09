@@ -39,7 +39,7 @@ export default {
             return this.wwObjectCtrl.getEditMode() == 'CONTENT'
         },
         mainColor() {
-            return this.wwObject.content.data.mainColor || '#2c2c2c'
+            return this.wwObject.data.mainColor || '#2c2c2c'
         },
         currentLang() {
             return wwLib.$store.getters["front/getLang"]
@@ -128,12 +128,12 @@ export default {
                   STYLE
                 \================================================================================================*/
                 if (typeof (result.color) != 'undefined') {
-                    this.wwObject.content.data.mainColor = result.color;
+                    this.wwObject.data.mainColor = result.color;
                 }
 
                 this.wwObjectCtrl.update(this.wwObject);
                 this.wwObjectCtrl.globalEdit(result);
-                console.log(this.wwObject.content.data)
+                console.log(this.wwObject.data)
             } catch (error) {
                 console.log(error);
             }
