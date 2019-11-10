@@ -158,21 +158,34 @@ export default {
     position: relative;
     min-width: 50px;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     cursor: pointer;
     .hover-zone {
         position: absolute;
         bottom: 0px;
+        -webkit-transform: translateY(100%);
         transform: translateY(100%);
         visibility: hidden;
         opacity: 0;
+        -webkit-transition: visibility 0s, opacity 0.2s linear;
         transition: visibility 0s, opacity 0.2s linear;
         z-index: 10;
         left: -10px;
         .lang-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
             flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
             width: 70px;
             background-color: white;
@@ -210,6 +223,7 @@ export default {
             .triangle {
                 position: absolute;
                 top: 55%;
+                -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
                 width: 0;
                 height: 0;
